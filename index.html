@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTShop - Premium Women's Fashion & Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-bag-heart"></i> BTShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                </ul>
+                <button class="btn btn-outline-light ms-2" id="cart-btn">
+                    <i class="bi bi-cart"></i> Cart <span class="badge badge-custom" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-center py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Welcome to BTShop</h1>
+            <p class="lead mb-4">Discover premium women's fashion, jewelry, perfumes & home essentials</p>
+            <button class="btn btn-lg btn-custom" onclick="scrollToProducts()">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Category Filters -->
+    <section class="py-4">
+        <div class="container">
+            <h3 class="mb-4">Shop by Category</h3>
+            <div class="btn-group flex-wrap" role="group">
+                <button type="button" class="btn btn-outline-custom category-btn" data-category="all">All Products</button>
+                <button type="button" class="btn btn-outline-custom category-btn" data-category="shoes">Shoes</button>
+                <button type="button" class="btn btn-outline-custom category-btn" data-category="clothing">Clothing</button>
+                <button type="button" class="btn btn-outline-custom category-btn" data-category="perfume">Perfume</button>
+                <button type="button" class="btn btn-outline-custom category-btn" data-category="jewelry">Jewelry</button>
+                <button type="button" class="btn btn-outline-custom category-btn" data-category="home">Home Items</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">Featured Products</h2>
+            <div class="row" id="product-list">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">About BTShop</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>BTShop is your premier destination for high-quality women's products. From elegant footwear to luxurious perfumes, curated fashion pieces to stunning jewelry, and beautiful home essentials—we have it all.</p>
+                </div>
+                <div class="col-md-6">
+                    <p>With a commitment to quality, affordability, and customer satisfaction, BTShop brings you the latest trends and timeless classics. Shop with confidence knowing that every product is carefully selected for our valued customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cart-items">
+                        <p class="text-muted">Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100">
+                        <div class="mb-2">
+                            <h5>Total: $<span id="cart-total">0.00</span></h5>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+                        <button type="button" class="btn btn-custom" id="checkout-btn">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-light-custom">
+                    <h5 class="modal-title"><i class="bi bi-credit-card"></i> Checkout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-4" id="checkoutTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button">1. Shipping</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button">2. Payment</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button">3. Review</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="checkoutTabContent">
+                        <!-- Shipping Tab -->
+                        <div class="tab-pane fade show active" id="shipping" role="tabpanel">
+                            <h6 class="mb-3">Shipping Information</h6>
+                            <form id="shippingForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="John" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="john@example.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="address" placeholder="123 Main Street" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="city" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="city" placeholder="New York" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="state" class="form-label">State</label>
+                                        <input type="text" class="form-control" id="state" placeholder="NY" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="zip" class="form-label">ZIP Code</label>
+                                        <input type="text" class="form-control" id="zip" placeholder="10001" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" placeholder="(555) 123-4567" required>
+                                </div>
+                                <button type="button" class="btn btn-custom w-100" onclick="moveToPayment()">
+                                    Continue to Payment <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Payment Tab -->
+                        <div class="tab-pane fade" id="payment" role="tabpanel">
+                            <h6 class="mb-3">Payment Information</h6>
+                            <form id="paymentForm">
+                                <div class="mb-3">
+                                    <label for="cardName" class="form-label">Cardholder Name</label>
+                                    <input type="text" class="form-control" id="cardName" placeholder="John Doe" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="expiry" class="form-label">Expiry Date</label>
+                                        <input type="text" class="form-control" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cvv" class="form-label">CVV</label>
+                                        <input type="text" class="form-control" id="cvv" placeholder="123" maxlength="3" required>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info" role="alert">
+                                    <i class="bi bi-info-circle"></i> This is a demo checkout. Use any valid card format.
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-outline-custom flex-grow-1" onclick="moveToShipping()">
+                                        <i class="bi bi-arrow-left"></i> Back
+                                    </button>
+                                    <button type="button" class="btn btn-custom flex-grow-1" onclick="moveToReview()">
+                                        Review Order <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Review Tab -->
+                        <div class="tab-pane fade" id="review" role="tabpanel">
+                            <h6 class="mb-3">Order Summary</h6>
+                            <div id="orderSummary" class="mb-4">
+                                <!-- Order items will be inserted here -->
+                            </div>
+                            <div class="card bg-light-custom mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Subtotal:</span>
+                                        <span>$<span id="reviewSubtotal">0.00</span></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Shipping:</span>
+                                        <span>$<span id="reviewShipping">9.99</span></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Tax:</span>
+                                        <span>$<span id="reviewTax">0.00</span></span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between fw-bold">
+                                        <span>Total:</span>
+                                        <span class="text-custom">$<span id="reviewTotal">0.00</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="shippingInfo" class="mb-3"></div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-custom flex-grow-1" onclick="moveToPayment()">
+                                    <i class="bi bi-arrow-left"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-custom flex-grow-1" onclick="placeOrder()">
+                                    <i class="bi bi-check-circle"></i> Place Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-custom text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>BTShop</h5>
+                    <p>Your trusted online destination for women's fashion and home essentials.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p class="text-white-50">Email: info@btshop.com<br>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <hr class="border-light">
+            <p class="text-center text-white-50 mb-0">&copy; 2026 BTShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

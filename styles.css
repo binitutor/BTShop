@@ -1,0 +1,445 @@
+/* ===== Color Scheme ===== */
+:root {
+    --primary-bg: #F2F0E5;
+    --secondary-bg: #F2E2C9;
+    --primary-text: #0A221C;
+    --secondary-text: #E29B57;
+    --dark-bg: #0A221C;
+}
+
+/* ===== General Styles ===== */
+body {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-text);
+    font-weight: 600;
+}
+
+p, a {
+    color: var(--primary-text);
+}
+
+/* ===== Navigation ===== */
+.navbar {
+    background-color: var(--dark-bg) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-text) !important;
+}
+
+.badge-custom {
+    background-color: var(--secondary-text);
+    color: var(--primary-text);
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section h1 {
+    color: var(--dark-bg);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Buttons ===== */
+.btn-custom {
+    background-color: var(--secondary-text);
+    color: var(--primary-text);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--dark-bg);
+    color: var(--secondary-text);
+}
+
+.btn-outline-custom {
+    color: var(--primary-text);
+    border-color: var(--secondary-text);
+    border: 2px solid var(--secondary-text);
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-custom:hover,
+.btn-outline-custom.active {
+    background-color: var(--secondary-text);
+    color: var(--primary-text);
+    border-color: var(--secondary-text);
+}
+
+/* ===== Cards ===== */
+.card {
+    border: none;
+    background-color: white;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-title {
+    color: var(--primary-text);
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* ===== Product Cards ===== */
+.product-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image {
+    height: 200px;
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.product-price {
+    color: var(--secondary-text);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.product-category {
+    display: inline-block;
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Background Colors ===== */
+.bg-light-custom {
+    background-color: var(--secondary-bg);
+}
+
+.bg-dark-custom {
+    background-color: var(--dark-bg);
+}
+
+/* ===== Forms ===== */
+.form-control {
+    border-color: var(--secondary-text);
+    color: var(--primary-text);
+}
+
+.form-control:focus {
+    border-color: var(--secondary-text);
+    box-shadow: 0 0 0 0.2rem rgba(226, 155, 87, 0.25);
+}
+
+/* ===== Tables ===== */
+.table {
+    color: var(--primary-text);
+}
+
+.table thead th {
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
+    font-weight: 600;
+    border-bottom: 2px solid var(--secondary-text);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(242, 224, 201, 0.5);
+}
+
+/* ===== Charts ===== */
+canvas {
+    max-height: 300px;
+}
+
+/* ===== Footer ===== */
+.footer-custom {
+    background-color: var(--dark-bg);
+    margin-top: auto;
+}
+
+.footer-custom a:hover {
+    color: var(--secondary-text) !important;
+}
+
+/* ===== Modal ===== */
+.modal-content {
+    background-color: var(--primary-bg);
+    border: 1px solid var(--secondary-bg);
+}
+
+.modal-header {
+    background-color: var(--secondary-bg);
+    border-bottom: 2px solid var(--secondary-text);
+}
+
+.modal-title {
+    color: var(--primary-text);
+    font-weight: 600;
+}
+
+/* ===== Alerts & Notifications ===== */
+.alert-custom {
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
+    border: 1px solid var(--secondary-text);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .product-card {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-outline-custom {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-text);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-text);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ===== Admin Dashboard Styles ===== */
+.admin-header {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a3d34 100%);
+    color: white;
+    border-bottom: 3px solid var(--secondary-text);
+}
+
+.admin-header h1 {
+    color: white;
+}
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    background-color: white;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--secondary-text);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+.stat-icon.bg-success {
+    background-color: #28a745 !important;
+}
+
+.stat-icon.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+.stat-icon.bg-warning {
+    background-color: #ffc107 !important;
+    color: #333 !important;
+}
+
+.stat-icon.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* ===== Login Page Styles ===== */
+.login-page {
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+    margin-bottom: 2rem;
+}
+
+.login-header h1 {
+    color: var(--dark-bg);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-header i {
+    color: var(--secondary-text);
+    margin-right: 0.5rem;
+}
+
+.login-card .form-label {
+    color: var(--primary-text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.login-card .form-control {
+    border: 2px solid var(--secondary-bg);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+.login-card .form-control:focus {
+    border-color: var(--secondary-text);
+    box-shadow: 0 0 0 0.2rem rgba(226, 155, 87, 0.25);
+}
+
+.login-card small {
+    font-size: 0.8rem;
+}
+
+.form-check-label {
+    color: var(--primary-text);
+    margin-left: 0.25rem;
+}
+
+.login-footer {
+    border-top: 1px solid var(--secondary-bg);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.login-footer code {
+    background-color: var(--secondary-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: var(--dark-bg);
+}
+
+/* ===== Checkout Styles ===== */
+.nav-tabs {
+    border-bottom: 2px solid var(--secondary-bg);
+}
+
+.nav-tabs .nav-link {
+    color: var(--primary-text);
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--secondary-text);
+    border-bottom-color: var(--secondary-text);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--secondary-text);
+    background-color: transparent;
+    border-bottom-color: var(--secondary-text);
+}
+
+.text-custom {
+    color: var(--secondary-text);
+}
+
+.fw-500 {
+    font-weight: 500;
+}
